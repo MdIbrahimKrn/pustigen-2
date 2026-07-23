@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif !important;
+            background-color: #faf9f6;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .logoName{
+            width:8rem ;
+        }
+
+        .animate-buy-now {
+            animation-name: rsiShaker;
+            animation-duration: 1.3s;
+            animation-timing-function: cubic-bezier(0.35, 0.06, 0.2, 0.98);
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+            }
+
+            @keyframes rsiShaker {
+
+            0%,
+            to {
+                transform: scaleX(1);
+            }
+
+            10%,
+            20% {
+                transform: scale3d(0.97, 0.97, 0.97) rotate(-1deg);
+            }
+
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: scale3d(1.03, 1.03, 1.03) rotate(1deg);
+            }
+
+            40%,
+            60%,
+            80% {
+                transform: scale3d(1.03, 1.03, 1.03) rotate(-1deg);
+            }
+            }
