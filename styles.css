@@ -47,3 +47,23 @@
                 transform: scale3d(1.03, 1.03, 1.03) rotate(-1deg);
             }
             }
+
+.home-carousel-track {
+    display: flex;
+    width: 300%;
+    animation: pustigenCarousel 15s infinite ease-in-out;
+}
+.home-carousel-slide {
+    min-height: 340px;
+}
+@media (min-width: 768px) {
+    .home-carousel-slide {
+        min-height: 460px;
+    }
+}
+@keyframes pustigenCarousel {
+    0%, 28% { transform: translateX(0); }
+    33%, 61% { transform: translateX(-33.333333%); }
+    66%, 94% { transform: translateX(-66.666666%); }
+    100% { transform: translateX(0); }
+}

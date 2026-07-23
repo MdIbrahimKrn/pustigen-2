@@ -1,7 +1,8 @@
 // ====================================================================
         // আপনার নতুন গুগল অ্যাপস স্ক্রিপ্ট (Web App URL) আপডেট করা হয়েছে
         // ====================================================================
-        const META_PIXEL_ID = window.PUSTIGEN_META_PIXEL_ID || '';
+        const META_PIXEL_ID = window.PUSTIGEN_META_PIXEL_ID || '2151575015387944';
+        const DELIVERY_CHARGE = 100;
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzXx8BUPgH4rPGqOL7M725HfB5vw2iwF9PRlfqwkg4K3q3F0mmw4nGqJZXhcrLievFh1A/exec"; 
 
         // Local Storage Sample Dataset (কাস্টমার ভিজিট করলে প্রথমে ইনস্ট্যান্ট এই প্রোডাক্টগুলো দেখাবে)
@@ -333,26 +334,51 @@
             }).join('');
 
             canvas.innerHTML = `
-                <!-- Promotion Banner -->
-                <div class="relative w-full bg-gradient-to-r from-amber-50 to-orange-50 py-10 px-4 border-b border-orange-100 mb-8">
-                    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-                        <div class="flex-1 space-y-4 text-center md:text-left">
-                            <span class="inline-block bg-orange-600 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">Premium Selection</span>
-                            <h1 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight">
-                                Direct From Nature <br>
-                                <span class="text-orange-600">To Your Happy Home</span>
-                            </h1>
-                            <p class="text-gray-600 text-xs md:text-sm max-w-md">No harmful chemicals, heavy synthetic metals, or processed additives. Absolute nourishment certified via rigid local sourcing nets.</p>
-                        </div>
-                        <div class="flex-1 flex justify-center">
-                            <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-amber-100 flex items-center justify-center shadow-inner">
-                                <img src="https://drive.google.com/thumbnail?id=1Yytx-yQPMOh7cPxFG6Ju6JqzFpSH5F9U&sz=w2000" class="w-48 h-48 md:w-64 md:h-64 object-contain rounded-xl">
-                            </div>
-                        </div>
+                <!-- Auto Carousel Promotion Banner -->
+                <section class="home-carousel relative w-full overflow-hidden border-b border-orange-100 mb-8 bg-orange-50">
+                    <div class="home-carousel-track">
+                        ${[
+                            {
+                                image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1600&q=80',
+                                badge: 'Premium Selection',
+                                title: 'প্রাকৃতিক পুষ্টি এখন ঘরে ঘরে',
+                                subtitle: 'ওটস, নাটস, সিডস ও ড্রাই ফ্রুটস দিয়ে তৈরি হেলদি খাবার—পরিবারের প্রতিদিনের পুষ্টির জন্য।'
+                            },
+                            {
+                                image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1600&q=80',
+                                badge: 'Chemical Free',
+                                title: 'নিরাপদ সোর্সিং, পরিষ্কার প্রসেসিং',
+                                subtitle: 'ক্ষতিকর কেমিক্যাল বা অপ্রয়োজনীয় অ্যাডিটিভ ছাড়া বাছাইকৃত উপাদান।'
+                            },
+                            {
+                                image: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1600&q=80',
+                                badge: 'Healthy Lifestyle',
+                                title: 'স্মার্ট ব্রেকফাস্ট ও স্ন্যাকস',
+                                subtitle: 'ব্যস্ত জীবনে সহজ, সুস্বাদু ও পুষ্টিকর খাবারের সঙ্গী PustiGen।'
+                            }
+                        ].map(slide => `
+                            <article class="home-carousel-slide relative min-w-full">
+                                <img src="${slide.image}" alt="${slide.title}" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-orange-900/20"></div>
+                                <div class="relative max-w-7xl mx-auto px-4 py-16 md:py-24 min-h-[340px] md:min-h-[460px] flex items-center">
+                                    <div class="max-w-2xl text-white space-y-5">
+                                        <span class="inline-block bg-orange-600 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">${slide.badge}</span>
+                                        <h1 class="text-3xl md:text-6xl font-black leading-tight">${slide.title}</h1>
+                                        <p class="text-sm md:text-lg text-orange-50 leading-7">${slide.subtitle}</p>
+                                        <button onclick="document.querySelector('[data-products-start]')?.scrollIntoView({behavior: 'smooth'})" class="px-5 py-3 bg-white text-orange-700 rounded-xl text-xs font-extrabold shadow-lg hover:bg-orange-50 transition">Shop Healthy Foods</button>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
                     </div>
-                </div>
+                    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-white/90"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-white/60"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-white/60"></span>
+                    </div>
+                </section>
 
-                <div class="max-w-7xl mx-auto px-4 space-y-12 pb-12">
+                <div class="max-w-7xl mx-auto px-4 space-y-12 pb-12" data-products-start>
                     ${categorySections}
                 </div>
             `;
@@ -413,7 +439,6 @@
                                         <h3 class="text-xs font-bold text-gray-800 line-clamp-2 hover:text-orange-600 transition min-h-[32px]">${p.title}</h3>
                                         ${p.availableOn ? `<p class="text-[10px] text-amber-700 font-semibold mt-1">Available on: ${formatOrderDateTime(p.availableOn)}</p>` : ''}
                                     </div>
-                                    <div class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded px-2 py-1 w-fit">Delivery Free</div>
                                     <div class="pt-1 flex items-center justify-between">
                                         <div class="flex items-baseline gap-1.5">
                                             <span class="text-sm font-extrabold text-orange-600">৳${p.price}</span>
@@ -456,7 +481,6 @@
                             <h3 class="text-xs font-bold text-gray-800 line-clamp-2 hover:text-orange-600 transition min-h-[32px]">${p.title}</h3>
                             ${p.availableOn ? `<p class="text-[10px] text-amber-700 font-semibold mt-1">Available on: ${formatOrderDateTime(p.availableOn)}</p>` : ''}
                         </div>
-                        <div class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded px-2 py-1 w-fit">Delivery Free</div>
                         <div class="pt-1 flex items-center justify-between">
                             <div class="flex items-baseline gap-1.5">
                                 <span class="text-sm font-extrabold text-orange-600">৳${p.price}</span>
@@ -520,8 +544,6 @@
                                         <span class="ml-auto text-[11px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-200">Stock Out</span>
                                     `}
                                 </div>
-                                <div class="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded px-2 py-1 w-fit">Delivery Free</div>
-
                                 ${p.availableOn ? `<p class="text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2">Next Availability: ${formatOrderDateTime(p.availableOn)}</p>` : ''}
                             </div>
 
@@ -602,7 +624,7 @@
                 `;
             }).join('');
 
-            const totalAmount = subtotal;
+            const totalAmount = subtotal + DELIVERY_CHARGE;
 
             canvas.innerHTML = `
                 <div class="max-w-4xl mx-auto px-4 py-8 space-y-6">
@@ -691,7 +713,7 @@
                                     </div>
                                     <div class="flex justify-between text-gray-500">
                                         <span>Delivery Charge:</span>
-                                        <span class="font-bold text-emerald-700">Free</span>
+                                        <span class="font-bold text-gray-800">৳${DELIVERY_CHARGE}</span>
                                     </div>
                                     <div class="flex justify-between text-sm font-black border-t pt-2 text-gray-900">
                                         <span>Grand Payable Total:</span>
@@ -769,7 +791,8 @@
                 address: address,
                 district: district,
                 thana: thana,
-                payable: subtotal,
+                payable: subtotal + DELIVERY_CHARGE,
+                deliveryCharge: DELIVERY_CHARGE,
                 skus: productSkusString,
                 notes: notes,
                 status: 'Pending Verification',
@@ -786,11 +809,11 @@
                 });
                 // Save to local check traces anyway
                 saveOrderToCache(orderPacket);
-                trackMetaEvent('Purchase', { value: Number(subtotal || 0), currency: 'BDT', content_ids: state.cart.map(i => i.product.id), order_id: orderId });
+                trackMetaEvent('Purchase', { value: Number(orderPacket.payable || 0), currency: 'BDT', content_ids: state.cart.map(i => i.product.id), order_id: orderId });
             } catch (err) {
                 console.warn("Direct POST stream failed or sandbox environment restricted. Writing trace cache.", err);
                 saveOrderToCache(orderPacket);
-                trackMetaEvent('Purchase', { value: Number(subtotal || 0), currency: 'BDT', content_ids: state.cart.map(i => i.product.id), order_id: orderId });
+                trackMetaEvent('Purchase', { value: Number(orderPacket.payable || 0), currency: 'BDT', content_ids: state.cart.map(i => i.product.id), order_id: orderId });
             }
 
             // Flush guest cart arrays
