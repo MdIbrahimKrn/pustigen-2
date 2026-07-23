@@ -6,9 +6,6 @@
 
         // Local Storage Sample Dataset (কাস্টমার ভিজিট করলে প্রথমে ইনস্ট্যান্ট এই প্রোডাক্টগুলো দেখাবে)
         const fallbackProductsList = [
-            {
-               
-            }
         ];
         const defaultCategoryOrder = [];
 
